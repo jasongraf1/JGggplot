@@ -11,8 +11,8 @@ Create boxplot of data.
 }
 \arguments{
 \item{data}{ a dataframe }
-\item{x}{ character vector containing the name of the column in \code{data} containing factor whose levels will be plotted on the x-axis. }
-\item{y}{ character vector containing the name of the column in \code{data} containing numeric vector whose values will be represented by the boxes. }
+\item{x}{ Unquoted variable name. The column in \code{data} containing factor whose levels will be plotted on the x-axis. }
+\item{y}{ Unquoted variable name. The column in \code{data} containing numeric vector whose values will be represented by the boxes. }
 \item{facet}{ character vector containing name(s) of one or two additional factors in \code{data} by which the plot will be faceted. }
 \item{fill}{ a character vector specifying the color of the boxes. Default is gray. }
 \item{facet.cols}{ numeric. Number of columns in display of faceted plots. }
@@ -28,15 +28,15 @@ Create boxplot of data.
 data(brown_genitives)
 
 ## plot the distribution of type-token ratios by genre
-ggBox.plot(brown_genitives, "Genre", "TypeTokenRatio")
+ggBox.plot(brown_genitives, Genre, TypeTokenRatio)
 
 ## plot the distribution of type-token ratios by
 ## genre and construction type
-ggBox.plot(brown_genitives, "Genre", "TypeTokenRatio",
+ggBox.plot(brown_genitives, Genre, TypeTokenRatio,
 	facet = "Type")
 
 ## plot the distribution of type-token ratios by
 ## genre, possessor animacy and construction type
-ggBox.plot(brown_genitives, "Genre", "TypeTokenRatio",
+ggBox.plot(brown_genitives, Genre, TypeTokenRatio,
 	facet = c("PossrAnimacyBin", "Type"))
 }

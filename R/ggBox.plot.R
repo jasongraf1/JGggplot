@@ -8,17 +8,8 @@ ggBox.plot <- function(data, x, y, facet = NULL, fill.col = NULL,
   # e.g. ggBox.plot(chickwts, feed, weight, notch = F)
   require(ggplot2)
   data <- as.data.frame(data)
-  if (is.character(x)) {
-    xvar <- x
-  } else {
-    xvar <- deparse(substitute(x))
-  }
-
-  if (is.character(y)) {
-    yvar <- y
-  } else {
-    yvar <- deparse(substitute(y))
-  }
+  xvar <- deparse(substitute(x))
+  yvar <- deparse(substitute(y))
 
   if (!is.numeric(data[, yvar])){
     stop("y variable must be numeric")
@@ -31,7 +22,7 @@ ggBox.plot <- function(data, x, y, facet = NULL, fill.col = NULL,
     if (length(facet) > 1){
       fvar1 <- facet[1]
       fvar2 <- facet[2]
-      p <- ggplot(data, aes_string(xvar, yvar)) +
+      p <- ggplot(data, aes_(substitute(x), substitute(y))) +
         geom_boxplot(fill = fill.col, notch = notch,
                      width = width) +
         facet_grid(as.formula(paste(fvar1, "~", fvar2)),
@@ -39,13 +30,13 @@ ggBox.plot <- function(data, x, y, facet = NULL, fill.col = NULL,
     } else {
       #fvar <- deparse(substitute(facet))
       fvar <- facet
-      p <- ggplot(data, aes_string(xvar, yvar)) +
+      p <- ggplot(data, aes_(substitute(x), substitute(y))) +
         geom_boxplot(fill = fill.col, notch = notch,
                      width = width) +
         facet_wrap(as.formula(paste("~", fvar)),
                    ncol = facet.cols, scales = scales)
     }} else {
-    p <- ggplot(data, aes_string(xvar, yvar)) +
+    p <- ggplot(data, aes_(substitute(x), substitute(y))) +
       geom_boxplot(fill = fill.col, notch = notch,
                    width = width)
   }

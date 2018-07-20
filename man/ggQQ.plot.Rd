@@ -2,7 +2,7 @@
 \alias{ggQQ.plot}
 \title{Quantile-Quantile Plot with ggplot2}
 \usage{
-ggQQ.plot(data, x)
+ggQQ.plot(data, x, add.labels = FALSE)
 }
 
 \description{
@@ -10,7 +10,8 @@ Produces a normal QQ plot of the values in \code{x} using \code{ggplot2}. Adds a
 }
 \arguments{
 \item{data}{ a dataframe }
-\item{x}{ a character vector containing the name of the column in \code{data} containing numeric vector whose values will be plotted. }
+\item{x}{ Unquoted variable name }
+\item{add.labels}{ logical. Should the plot show actual values rather than points (default)?}
 }
 \value{
 A \code{\link{ggplot2}} object to which other layers can be added.
@@ -21,12 +22,11 @@ A \code{\link{ggplot2}} object to which other layers can be added.
 
 \author{Jason Grafmiller}
 \examples{
-d <- data.frame(
-  x1 = rnorm(1000, 2),
-  x2 = rchisq(1000, 2))
+data(brown_genitives)
 
-ggQQ.plot(d, "x1")
+ggQQ.plot(brown_genitives, TypeTokenRatio)
 
-ggQQ.plot(d, "x2")
+ggQQ.plot(x) + annotate("text", x = 0.5, y = 0, label = "some text")
 
+ggQQ.plot(x) + theme_bw()
 }

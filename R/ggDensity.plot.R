@@ -1,5 +1,5 @@
 
-ggDensity.plot <- function(data, xvar, facet = NULL, as.hist = FALSE,
+ggDensity.plot <- function(data, x, facet = NULL, as.hist = FALSE,
                            fill.col = NULL, line.col = "black",
                            scales = "fixed",
                            bin.width = NULL, add.line = T,
@@ -13,11 +13,7 @@ ggDensity.plot <- function(data, xvar, facet = NULL, as.hist = FALSE,
   require(ggplot2)
   data <- as.data.frame(data)
   #xvar <- deparse(substitute(x))
-  if (is.character(xvar)) {
-    xvar <- xvar
-  } else {
-    xvar <- deparse(substitute(xvar))
-  }
+  xvar <- deparse(substitute(x))
   if (!is.numeric(data[, xvar])){
     stop("x variable must be numeric")
   }
@@ -31,12 +27,12 @@ ggDensity.plot <- function(data, xvar, facet = NULL, as.hist = FALSE,
     line.col <- fill.col # set default line color to match fill color
   }
   if (as.hist){
-    p <- ggplot(data, aes_string(xvar)) +
+    p <- ggplot(data, aes_(substitute(x))) +
       geom_histogram(binwidth = bin.width,
                      fill = fill.col, color = line.col,
                      alpha = alpha.h)
   } else {
-    p <- ggplot(data, aes_string(xvar)) +
+    p <- ggplot(data, aes_(substitute(x))) +
       geom_histogram(aes(y = ..density..), binwidth = bin.width,
                      fill = fill.col, color = line.col,
                      alpha = alpha.h)

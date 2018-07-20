@@ -13,7 +13,7 @@ Create density histogram of data with a density curve overlay using \code{ggplot
 }
 \arguments{
 \item{data}{ a dataframe }
-\item{y}{ a character vector containing the name of the column in \code{data} containing numeric vector whose values will be plotted. }
+\item{y}{ Unquoted variable name of the column in \code{data} whose values will be plotted. }
 \item{facet}{ a character vector of one or two additional factor names by which the plot will be faceted. }
 \item{fill.col}{ a character vector specifying the fill color of the histogram bars. Default is \code{"lightgray"}. }
 \item{line.col}{ a character vector specifying the line color of the histogram bars. Default is black. Specify \code{line.col = F} to suppress line colors. }
@@ -25,22 +25,22 @@ Create density histogram of data with a density curve overlay using \code{ggplot
 \item{fill.d}{ a character vector specifying the color of the filled area under the density curve. Specify \code{fill.d = F} to suppress fill color. }
 }
 \seealso{
-\code{\link{ggplot2}, \link{geom_histogram}, \link{geom_density}, \link{stat_bin}}.
+See Also \code{\link{ggplot2}, \link{geom_histogram}, \link{geom_density}, \link{stat_bin}}.
 }
 \author{Jason Grafmiller}
 \examples{
 data(brown_genitives)
 
 ## plot the distribution of type-token ratios by genre
-ggDensity.plot(brown_genitives, "TypeTokenRatio")
+ggDensity.plot(brown_genitives, TypeTokenRatio)
 
 ## plot the distribution of type-token ratios by
 ## construction type
-ggDensity.plot(brown_genitives, "TypeTokenRatio",
+ggDensity.plot(brown_genitives, TypeTokenRatio,
 	facet = "Type")
 
 ## plot the distribution of type-token ratios by
 ## construction type and genre
-ggDensity.plot(brown_genitives, "TypeTokenRatio",
+ggDensity.plot(brown_genitives, TypeTokenRatio,
 	facet = c("Type", "Genre"))
 }
